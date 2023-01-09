@@ -1,0 +1,55 @@
+<div class="auth-bg px-5 pt-5 pb-3">
+  <mat-card class="example-card shadow text-center mx-auto mt-5">
+    <mat-card-header class="text-center">
+      <img
+        src="../../assets/logo.png"
+        class="mx-auto mb-3"
+        width="50"
+        height="60"
+      />
+      <mat-card-title></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="example-form text-center">
+        <mat-form-field class="w-75" appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Email"
+            [(ngModel)]="email"
+            name="email"
+            required
+          />
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="w-75" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Password"
+            [(ngModel)]="password"
+            type="password"
+            name="password"
+            requiredss
+          />
+          <mat-icon matSuffix>key</mat-icon>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        class="w-50 m-3"
+        mat-raised-button
+        (click)="login()"
+        color="primary"
+      >
+        Login
+      </button>
+      <br />
+      <span
+        >You don't have an account ?
+        <a [routerLink]="['/auth/register']">register</a> here</span
+      >
+    </mat-card-actions>
+  </mat-card>
+</div>

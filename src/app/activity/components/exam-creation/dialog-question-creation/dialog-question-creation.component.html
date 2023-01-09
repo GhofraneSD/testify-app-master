@@ -1,0 +1,89 @@
+<h1 class="text-center" mat-dialog-title>Put the question here !</h1>
+<div mat-dialog-content style="width: 1000px">
+  <div class="my-3 rounded w-75 mx-auto">
+    <angular-editor
+      [(ngModel)]="this.questionPayload.text"
+      [placeholder]="'Text Question'"
+      class="rounded"
+      name="text-question"
+      required
+      rows="4"
+    ></angular-editor>
+    <mat-card class="mt-3 text-center shadow-none">
+      <div class="mx-auto">
+        <mat-form-field class="w-100" appearance="fill">
+          <mat-label>Choice label</mat-label>
+
+          <input
+            [(ngModel)]="this.questionPayload.choices[i].choiceLabel"
+            matInput
+            name="choiceLabel"
+            placeholder="Choice label"
+          />
+          <button
+            class="links side"
+            color="primary"
+            matSuffix
+            mat-mini-fab
+            [matMenuTriggerFor]="menuChoice"
+          >
+            <mat-icon>queue</mat-icon>
+          </button>
+          <mat-menu #menuChoice="matMenu">
+            <button
+              mat-menu-item
+              class="text-success"
+              (click)="this.addChoice(true)"
+            >
+              <mat-icon>thumb_up</mat-icon> As correct option
+            </button>
+            <button mat-menu-item class="text-error" (click)="this.addChoice(false)">
+              <mat-icon>thumb_down</mat-icon>
+
+              As wrong option
+            </button>
+          </mat-menu>
+        </mat-form-field>
+        <ng-container
+          *ngIf="this.questionPayload.choices.length > 1; else elseTemplate"
+        >
+          <mat-expansion-panel>
+            <mat-expansion-panel-header class="text-center">
+              {{ this.questionPayload.choices.length - 1 }} choices added
+            </mat-expansion-panel-header>
+            <mat-list
+              class=" mx-auto"
+              *ngIf="this.questionPayload.choices.length > 1"
+            >
+              <mat-list-item
+                class="px-0 my-1 rounded-3 "
+                *ngFor="
+                  let choice of this.questionPayload.choices;
+                  let index = index
+                "
+              >
+                <span
+                  mat-list-icon
+                  class="text-light rounded-3 bg-secondary mx-1"
+                  >{{ index + 1 }}</span
+                >{{ choice.choiceLabel }}
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </ng-container>
+        <ng-template #elseTemplate> No choices added yet </ng-template>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div align="end" class="rounded px-2" mat-dialog-actions>
+  <button (click)="this.onNoClick()" mat-raised-button>Cancel</button>
+  <button
+    [mat-dialog-close]="this.questionPayload"
+    cdkFocusInitial
+    color="primary"
+    mat-raised-button
+  >
+    Add
+  </button>
+</div>

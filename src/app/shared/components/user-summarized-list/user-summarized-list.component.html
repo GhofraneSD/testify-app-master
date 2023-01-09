@@ -1,0 +1,24 @@
+
+<div class="offset-1 basic-container">
+  <mat-nav-list>
+    <mat-divider></mat-divider>
+    <span *ngFor="let i of users">
+		<mat-list-item (click)="menuTrigger.openMenu()">
+			<p mat-line class="d-flex justify-content-between">
+        <span style="font-weight: bold;margin-right:10px">Name</span>
+        <span class="col-4">{{ i.fullname }}</span>  <span class=" col-4 "> {{ i.email }}</span>
+			</p>
+			<button mat-icon-button class="mx-auto" #menuTrigger="matMenuTrigger"  [matMenuTriggerFor]="menu">
+        <mat-icon>edit</mat-icon>
+     </button>
+		</mat-list-item>
+    <mat-divider></mat-divider>
+    </span>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>View profile</button>
+      <button mat-menu-item>Grant organizer</button>
+      <button mat-menu-item>Grant admin</button>
+      <button mat-menu-item>Delete User</button>
+    </mat-menu>
+  </mat-nav-list>
+</div>

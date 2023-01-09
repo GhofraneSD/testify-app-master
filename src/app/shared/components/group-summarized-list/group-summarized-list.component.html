@@ -1,0 +1,28 @@
+<div class="offset-1 basic-container">
+  <mat-nav-list>
+    <mat-divider></mat-divider>
+    <span *ngFor="let i of groups">
+      <mat-list-item (click)="menuTrigger.openMenu()">
+        <p mat-line class="d-flex justify-content-between">
+          <span style="font-weight: bold">Group:{{ i._id }}</span>
+          <span class="col-7" style="margin-right: 10px">{{ i.name }}</span>
+        </p>
+        <button
+          mat-icon-button
+          #menuTrigger="matMenuTrigger"
+          [matMenuTriggerFor]="menu"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>View group</button>
+        <button mat-menu-item>Edit group</button>
+        <button mat-menu-item (click)="this.removeRequest(i)">
+          Delete group
+        </button>
+      </mat-menu>
+    </span>
+  </mat-nav-list>
+</div>

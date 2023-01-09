@@ -1,0 +1,15 @@
+<div class=""></div>
+<mat-card class="mt-2 col-6 offset-3">
+  <mat-card-header>
+    <mat-card-title>
+      <strong>{{ this.exam.name }}</strong></mat-card-title
+    >
+    <mat-card-subtitle
+      ><mat-icon matSuffix>timer</mat-icon> Duration &nbsp;{{this.exam.duration}}&nbsp; minutes
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content> {{ this.exam.description }}</mat-card-content>
+  <mat-card-actions class="text-center">
+    <a [routerLink]="['/activity/exam/', exam._id,'questions']" class="bg-success w-50 text-white" mat-button>Pass Exam</a>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,44 @@
+<mat-tab-group backgroundColor="accent" class="offset-1 rounded-3 col-7 mt-5">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>person</mat-icon>
+      &nbsp; Users
+    </ng-template>
+    <app-user-summarized-list [users]="this.users"></app-user-summarized-list>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>school</mat-icon>
+      &nbsp; Exams
+    </ng-template>
+    <a
+      mat-button
+      mat-flat-button
+      class="mx-auto mb-2"
+      routerLink="/activity/exam/new"
+      color="primary"
+      ><mat-icon>add_circle</mat-icon></a
+    >
+    New Exam
+    <div class="mb-2"></div>
+    <app-exam-summarized-list [exams]="this.exams"></app-exam-summarized-list>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>supervisor_account</mat-icon>
+      &nbsp; Groups
+    </ng-template>
+    <app-group-summarized-list
+      [groups]="this.groups"
+    ></app-group-summarized-list>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon> contact_mail</mat-icon>
+      &nbsp; Requests
+    </ng-template>
+    <app-request-summarized-list
+      [requests]="this.requests"
+    ></app-request-summarized-list>
+  </mat-tab>
+</mat-tab-group>

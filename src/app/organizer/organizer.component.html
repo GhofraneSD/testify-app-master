@@ -1,0 +1,38 @@
+<mat-tab-group backgroundColor="accent" class="offset-1 rounded-3 col-7 mt-5">
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>school</mat-icon>
+      &nbsp; Exams
+    </ng-template>
+    <a
+      mat-button
+      mat-flat-button
+      class="mx-auto mb-2"
+      routerLink="/activity/exam/new"
+      color="primary"
+      ><mat-icon>add_circle</mat-icon></a
+    >
+    New Exam
+    <div class="mb-2"></div>
+    <app-exam-summarized-list [exams]="this.exams"></app-exam-summarized-list>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon>supervisor_account</mat-icon>
+      &nbsp; Groups
+    </ng-template>
+    <a
+      mat-button
+      mat-flat-button
+      class="mx-auto mb-2"
+      routerLink="/activity/group/new"
+      color="primary"
+      ><mat-icon>add_circle</mat-icon></a
+    >
+    New Group
+    <div class="mb-2"></div>
+    <app-group-summarized-list
+      [groups]="this.groups"
+    ></app-group-summarized-list>
+  </mat-tab>
+</mat-tab-group>

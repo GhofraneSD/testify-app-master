@@ -1,0 +1,48 @@
+<header *ngIf="user" class="mx-auto">
+  <mat-toolbar class="py-0 mx-1 rounded-3">
+    <a routerLink="/" class="logo"></a>
+    <a routerLink="/activity/exam" class="mx-3"
+      ><mat-icon>list</mat-icon>Exams</a
+    >
+    <span class="example-spacer"></span>
+    <a class="links side" routerLink="/auth/login" *ngIf="!user">Login</a>
+    <div>
+      <a class="links side" *ngIf="user" [matMenuTriggerFor]="menu">
+        <ng-container *ngIf="user.avatar; else elseTemplate">
+          <img
+            width="50"
+            height="50"
+            class="rounded-3"
+            [src]="user.avatar"
+            alt=""
+          />
+          {{ user.fullname }}
+        </ng-container>
+        <ng-template #elseTemplate>
+          <mat-icon>account_circle</mat-icon>{{ user.fullname }}
+        </ng-template>
+      </a>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          *ngIf="user?.isOrganizer"
+          routerLink="/organizer/dashboard"
+        >
+          <mat-icon>dashboard</mat-icon>
+          Organizer Dashboard
+        </button>
+        <button
+          mat-menu-item
+          *ngIf="user?.isAdmin"
+          routerLink="/admin/dashboard"
+        >
+          <mat-icon>dashboard</mat-icon>
+          Admin Dashboard
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon> logout
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</header>

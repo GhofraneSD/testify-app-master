@@ -1,0 +1,48 @@
+<div class="offset-1 basic-container">
+  <mat-nav-list>
+    <mat-divider></mat-divider>
+    <span *ngFor="let i of requests">
+      <mat-list-item (click)="menuTrigger.openMenu()">
+        <p mat-line class="d-flex justify-content-between">
+          <span style="font-weight: bold">Request:{{ i._id }}</span>
+          <span *ngIf="i.sendBy" class="col-6 mx-3">{{
+            i.sendBy.fullname
+          }}</span>
+          <mat-icon
+            class="col-1"
+            style="margin-right: 10px"
+            *ngIf="i.state === -1"
+            >clear</mat-icon
+          >
+          <mat-icon
+            class="col-1"
+            style="margin-right: 10px"
+            *ngIf="i.state === 1"
+            >how_to_reg</mat-icon
+          >
+          <mat-icon
+            class="col-1"
+            style="margin-right: 10px"
+            *ngIf="i.state === 0"
+            >notifications</mat-icon
+          >
+        </p>
+        <button
+          mat-icon-button
+          #menuTrigger="matMenuTrigger"
+          [matMenuTriggerFor]="menu"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>View request</button>
+        <button mat-menu-item>Accept Request</button>
+        <button mat-menu-item>Reject Request</button>
+        <button mat-menu-item>Reject Request</button>
+      </mat-menu>
+    </span>
+  </mat-nav-list>
+</div>

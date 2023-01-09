@@ -1,0 +1,37 @@
+<div class="row w-75 mx-0 px-auto d-flex justify-content-center">
+<mat-card class="my-4 px-0 py-2 col-4 mx-2" *ngFor="let exam of this.exams">
+  <mat-card-header class="w-100 mb-2">
+    <mat-card-title>
+      <strong>{{ exam.name }}</strong></mat-card-title
+    >
+    <mat-card-subtitle>
+      <ng-container *ngIf="exam.organizer.avatar; else elseTemplate">
+        <img
+          width="40"
+          height="40"
+          class="rounded-pill"
+          [src]="exam.organizer.avatar"
+          alt=""
+        />
+        {{ exam.organizer.fullname }}
+      </ng-container>
+      <ng-template #elseTemplate>
+        <mat-icon>account_circle</mat-icon>{{ exam.organizer.fullname }}
+      </ng-template>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <img src="{{ exam.thumbnail }}" class="w-100 mb-3" style="height: 200px" />
+    <p class="mx-3">
+      {{ exam.description | slice: 0:150
+      }}<span *ngIf="exam.description.length > 150">...</span>
+    </p></mat-card-content
+  >
+
+  <mat-card-actions class="text-center ">
+    <a [routerLink]="['/activity/exam/', exam._id]" mat-button>
+      more details &nbsp; <mat-icon>chevron_right</mat-icon>
+    </a>
+  </mat-card-actions>
+</mat-card>
+</div>

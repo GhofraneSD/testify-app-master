@@ -1,0 +1,30 @@
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.example-card {
+
+  width: 500px;
+}
+
+.mat-card-title {
+  font-size: 16px;
+}
+
+.example-card {
+  //  background-color: indigo !important;
+}
+
+
+.auth-bg {
+  background-image: url('../../assets/bg-auth.jpg') ;
+  background-repeat: round;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

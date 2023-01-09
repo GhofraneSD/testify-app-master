@@ -1,0 +1,98 @@
+<div class="row mt-3 mx-0 h-100">
+  <mat-horizontal-stepper
+    #stepperQ
+    class="justify-content-center col-10 bg-transparent"
+  >
+    <mat-step
+      *ngFor="let question of questions; let index = index"
+      label="{{ index }}"
+    >
+      <mat-card class="col-10 border-0 mx-auto question-card rounded">
+        <mat-card-header class="mb-2 px-auto">
+          <mat-card-title
+            >Question &nbsp; {{ index + 1 }}
+            <span *ngIf="this.answer" class="mx-2 badge bg-secondary"
+              >Already answered</span
+            >
+          </mat-card-title>
+          <mat-card-subtitle
+            ><mat-divider class="mx-5 my-2 w-75"> </mat-divider>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="mx-3">
+          <p [innerHTML]="question.text"></p>
+          <br />
+          <mat-list class="w-75 shadow-none mx-auto">
+            <mat-list-item *ngFor="let choice of question.choices">
+              <mat-checkbox
+                (change)="choseChoices(choice._id)"
+                class="custom-frame"
+                color="primary"
+                >{{ choice.choiceLabel }}</mat-checkbox
+              >
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+        <mat-card-actions class="d-flex justify-content-center">
+          <button
+            (click)="this.answerQuestion(question._id)"
+            class="btn-success w-50 mx-auto mt-5"
+            mat-raised-button
+          >
+            Save &nbsp;<mat-icon> check_circle </mat-icon>&nbsp;Answer
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-step>
+  </mat-horizontal-stepper>
+  <mat-card class="col-2 border-left px-0 pt-0 pb-3" style="height: 240px">
+    <img src="{{ this.exam.thumbnail }}" class="rounded-top w-100" alt="" />
+    <mat-card-title
+      class="bg-secondary text-white text-center rounded-bottom m-0 p-0"
+      ><mat-icon>timer</mat-icon> {{ this.display }}
+    </mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+    <mat-card-content class="mx-3">
+      <p>
+        <span class="h5">{{ this.numberAnswer }}</span
+        >&nbsp; Questions answered
+        <span class="h5">{{ this.numberCorrectAnswers }}</span
+        >&nbsp; Correct answer
+      </p>
+    </mat-card-content>
+    <mat-card-actions class="text-center">
+      <button class="w-50" mat-raised-button>
+        Leave <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <div class="mt-2 text-center fixed pb-5">
+    <button (click)="this.step(-1)" class="mx-3" mat-raised-button>
+      <mat-icon>navigate_before</mat-icon>
+      Back
+    </button>
+    <button (click)="this.step(1)" mat-raised-button>
+      Next
+      <mat-icon>navigate_next</mat-icon>
+    </button>
+    <mat-form-field class="offset-1 col-1">
+      <mat-label>Go to</mat-label>
+      <input
+        #pageNumber
+        [matAutocomplete]="auto"
+        matInput
+        name="number"
+        placeholder="Go to"
+        type="number"
+      />
+      <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+        <mat-option *ngFor="let option of this.options" [value]="option">
+          {{ option }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button (click)="move(pageNumber.value)" color="primary" mat-mini-fab>
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</div>
